@@ -1,0 +1,15 @@
+[filter_remote]
+# 广告完整版：保持独立，不改变原有拒绝逻辑
+https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Advertising/Advertising.list, tag=广告域名-完整版, force-policy=reject, update-interval=604800, opt-parser=false, enabled=true
+
+# 10份上游规则源合并为前段分流：不设force-policy
+https://cdn.jsdelivr.net/gh/你的用户名/qx-rule-aggregator@main/rules/BeforeTikTok.list, tag=V1.8-前段分流, update-interval=259200, opt-parser=false, enabled=true
+
+# TikTok专项依旧直接订阅原项目，以免影响已验证的解锁效果
+https://cdn.jsdelivr.net/gh/Semporia/TikTok-Unlock@master/Quantumult-X/TikTok.list, tag=TikTok专项分流-Semporia, force-policy=TikTok服务, update-interval=604800, opt-parser=false, enabled=true
+
+# 64份上游规则源合并为后段分流：不设force-policy
+https://cdn.jsdelivr.net/gh/你的用户名/qx-rule-aggregator@main/rules/AfterTikTok.list, tag=V1.8-后段分流, update-interval=259200, opt-parser=false, enabled=true
+
+# 原有内置局域网规则
+FILTER_LAN, tag=局域网, force-policy=direct, inserted-resource=true, enabled=true
