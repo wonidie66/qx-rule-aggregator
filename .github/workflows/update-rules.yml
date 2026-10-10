@@ -15,7 +15,6 @@ on:
 permissions:
   contents: write
 
-# 避免本工作流不同运行实例同时写入仓库；不能阻止其他人工提交。
 concurrency:
   group: qx-rule-update
   cancel-in-progress: false
@@ -25,11 +24,9 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 25
     steps:
-      - name: 检出仓库最新 main 分支
+      - name: 检出仓库
         uses: actions/checkout@v4
         with:
-          ref: main
-          fetch-depth: 0
           persist-credentials: true
 
       - name: 安装 Python
@@ -73,20 +70,6 @@ jobs:
           if git diff --cached --quiet; then
             echo '上游没有需要发布的变化'
           else
-            # 先保存构建时基线，避免在聚合期间修改了源清单/脚本却发布旧生成结果。
-            BASE_SHA="$(git rev-parse HEAD)"
             git commit -m 'chore: 经审计更新 Quantumult X 聚合规则'
-            git fetch origin main
-            # 远端如果已经修改了聚合输入或审计代码，安全停止，改为基于最新版本重跑。
-            if ! git diff --quiet "$BASE_SHA" origin/main -- sources.json scripts/ tests/ config/ .github/workflows/update-rules.yml; then
-              echo '::error::构建期间聚合代码或清单已更新，请在 Actions 中新建运行（不要重跑旧 SHA）。'
-              exit 1
-            fi
-            if ! git rebase origin/main; then
-              git rebase --abort || true
-              echo '::error::无法自动整合远端提交；已停止推送以保护远端内容。请新建运行。'
-              exit 1
-            fi
-            # 即使发生竞态也不会强行覆盖远端分支。
-            git push origin HEAD:main
+            git push
           fi
