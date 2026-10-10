@@ -12,7 +12,7 @@
 | 后段公开规则 | [rules/v1.10/AfterTikTok.list](rules/v1.10/AfterTikTok.list) |
 | V1.10 完整构建报告 | [reports/v1.10/README.md](reports/v1.10/README.md) |
 | V1.10.2 覆盖审计 | [reports/v1.10/priority_audit.md](reports/v1.10/priority_audit.md) |
-| 更新日志（追加记录） | [reports/history/v1.10/updates.md](reports/history/v1.10/updates.md)（清理版首次正式发布后生成） |
+| 更新日志（追加记录） | [reports/history/v1.10/README.md](reports/history/v1.10/README.md)（历史基线与后续自动更新记录） |
 | 历史版本与维护索引 | [docs/版本与维护索引.md](docs/版本与维护索引.md) |
 
 ## 自动更新与校验
