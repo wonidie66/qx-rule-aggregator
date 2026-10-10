@@ -120,3 +120,39 @@ blackmatrix7/ios_rule_script 仓库声明 GPL-2.0。聚合生成的规则属于�
 Semporia/TikTok-Unlock 未提供明确的 GitHub 许可证声明，所以本项目**不重新发布其文件**；Quantumult X 直接引用其上游 URL。这样不会改变你已验证可用的 TikTok 解锁策略。
 
 `.gitignore` 仅提供额外防护，不能替代人工保密检查。不要把机场订阅令牌、节点密钥、MITM 私钥、私人配置、访问令牌或 Cookie 加入仓库。
+
+---
+
+## V1.8.1：已验证版本的自动更新安全保护（2026-10-10）
+
+你已在设备上验证 V1.8 的六项日常测试均通过。V1.8.1 **不会改变** `rules/BeforeTikTok.list`、`rules/AfterTikTok.list`、TikTok 分流、广告规则、Quantumult X 手机配置或 MITM；只增强 GitHub Actions 的发布前检查。
+
+### 需要新增或覆盖的文件
+
+- 覆盖 `.github/workflows/update-rules.yml`：聚合成功之后执行发布审计，失败时不提交，并保存审计报告为 Actions Artifact。
+- 新增 `scripts/audit_rules.py`：检测 SHA256、文件大小、策略组名称、前后版本规则规模及首选策略变化。
+- 新增 `config/policies.json`：列出 V1.8 中有效的策略名称（不含节点和个人配置）。
+- 新增 `tests/test_audit_rules.py`：回归测试和故障场景测试。
+
+其他所有文件都可以不修改，特别是 `sources.json`、`scripts/aggregate.py` 和两份已发布规则文件。
+
+### GitHub 网页升级步骤
+
+1. 打开仓库的 **Code** 页面，选择 `main` 分支。
+2. 将上述4个文件按照**原目录结构**上传或更新。其中 `.github/workflows/update-rules.yml` 可以通过 **Add file → Create new file** 创建（Windows 可能隐藏以 `.` 开头的目录）。
+3. 打开 **Actions → 更新 Quantumult X 聚合规则 → Run workflow**，首次测试保持 `approve_routing_changes=false`。
+4. 当工作流成功且出现 `reports/audit.md`，说明安全审计已接入。
+5. 如果工作流失败，打开运行页面查看「保留本次报告供失败排查」步骤的 Artifact 下载并阅读 `reports/audit.md`；**切勿因为更新失败而删除手机里的旧规则**。
+
+### 如何处理未来的自动更新告警
+
+- `策略组未定义`、文件哈希错误、首次引入覆盖几乎全部流量的规则：应先修复源代码或上游引用，不提供一键放行。
+- 规则条数变化超过 ±15%、同一匹配条件的首选策略发生变化：默认阻止发布。先阅读 Actions Artifact 的 `reports/audit.md` 和 `reports/conflicts.csv`，核验路由意图后，手动运行时才勾选 `approve_routing_changes`。
+- 目前已有的 238 处精确条件跨策略重叠**不会自动删除**，仍保留现有顺序。未来新出现的“后缀包含”、“关键词重叠”和 IP 范围重叠尚不能全部自动判别。
+
+### 重要限制
+
+- 自动更新的 GitHub Actions Cron `17 3 */3 * *` 不是严格每72小时，而是按每月的第1、4、7……天执行。
+- 远程 CDN 分支资源可能有缓存延迟；校验确保**本次生成文件与本次报告一致**，并不保证同一时刻所有上游资源处于相同版本。
+- 这些是代码与构建层的安全检查，不代表真实访问速度、广告拦截率或各服务解锁能力的证明。
+- 仓库只包含公开规则源。不要向仓库提交 MITM 私钥、密码、机场订阅链接或其他个人凭据。
