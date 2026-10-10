@@ -39,7 +39,7 @@ class V1102Tests(unittest.TestCase):
     def test_direct_first_candidates_file_order(self):
         _, domain, _ = analyze(self.a, self.b)
         examples = direct_first_review(domain)
-        self.assertEqual(examples, [])
+        self.assertTrue(any(x['先出现规则'] == 'HOST-SUFFIX,cn' for x in examples))
         # 在文件中更早出现的直连父级规则需要单独列入人工复核。
         self.a.write_text(
             'HOST-SUFFIX,steamchina.com,direct\n'
