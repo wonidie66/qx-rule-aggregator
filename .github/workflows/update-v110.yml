@@ -13,6 +13,8 @@ on:
     branches: [main]
     paths:
       - 'scripts/analyze_rules_v1102.py'
+      - 'scripts/archive_release_v110.py'
+      - 'tests/test_archive_release_v110.py'
       - 'tests/test_rule_analysis_v1102.py'
       - '.github/workflows/update-v110.yml'
   schedule:
@@ -81,10 +83,18 @@ jobs:
           if git diff --cached --quiet; then
             echo 'V1.10 规则及报告没有内容变化，不创建无意义提交'
           else
+            # 只有成功完成安全审计、且规则或报告有实际变化时，才追加永久历史快照。
+            python scripts/archive_release_v110.py \
+              --summary reports/v1.10/summary.json \
+              --history reports/history/v1.10 \
+              --run-id "$GITHUB_RUN_ID" \
+              --run-number "$GITHUB_RUN_NUMBER" \
+              --repository "$GITHUB_REPOSITORY"
+            git add reports/history/v1.10/
             BASE_SHA="$(git rev-parse HEAD)"
             git commit -m 'chore: 经审计发布 V1.10 规则与冲突分类报告'
             git fetch origin main
-            if ! git diff --quiet "$BASE_SHA" origin/main -- sources_v110.json sources_v19.json scripts/ tests/ config/ .github/workflows/update-v110.yml; then
+            if ! git diff --quiet "$BASE_SHA" origin/main -- sources_v110.json sources_v19.json scripts/ tests/ config/ .github/workflows/update-v110.yml .github/workflows/validate-v110.yml; then
               echo '::error::规则构建期间源码或策略发生变化，请重新发起运行'
               exit 1
             fi
