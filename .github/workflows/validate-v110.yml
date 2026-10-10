@@ -1,0 +1,33 @@
+name: 校验 V1.10 规则生成器与审计工具
+
+on:
+  pull_request:
+    paths:
+      - 'scripts/**'
+      - 'tests/**'
+      - 'config/**'
+      - 'sources_v110.json'
+      - '.github/workflows/update-v110.yml'
+      - '.github/workflows/validate-v110.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  regression:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: 检出 PR 代码
+        uses: actions/checkout@v5
+      - name: 安装 Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: 运行离线回归测试
+        run: python -m unittest discover -s tests -v
+      - name: 离线校验现有冲突报告
+        run: |
+          python scripts/conflict_review_v110.py --summary reports/v1.10/summary.json --out-dir "${RUNNER_TEMP}/qx-v110-review"
+          python -c "import json, os, pathlib; p=pathlib.Path(os.environ['RUNNER_TEMP'])/'qx-v110-review/conflict_review.json'; d=json.loads(p.read_text(encoding='utf-8')); assert d['summary']['跨策略重叠记录数'] >= 0"
