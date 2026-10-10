@@ -119,6 +119,23 @@ def check_generated(outdir: Path, report_dir: Path, policy_file: Path,
     else:
         notes.append('未发现已发布的 HEAD 规则，属于首次构建：无法进行前后版本回归比较')
     old_risk = set(risky_selectors(previous))
+    # V1.9 首次构建时并无 rules/v1.9/ 的已发布文件。
+    # 仅对“高风险规则是否已经存在”这个判断读取原 V1.8 稳定基线；
+    # 其余策略变更、规则总量等审计仍以 V1.9 同版本为比较对象。
+    # 必须完全相同的规则文本才可继承，不能因为规则类型或域名相同就放行策略变更。
+    if not old_total and head_rule_prefix.rstrip('/') == 'rules/v1.9':
+        legacy_texts = [head_reader(f'rules/{name}') for name in FILES]
+        legacy_policies = head_reader('config/policies.json')
+        if all(legacy_texts) and legacy_policies:
+            legacy_allowed = set(json.loads(legacy_policies)['allowed_policies'])
+            legacy_rules = [
+                parse_rule_text(value, name + '[已发布V1.8]', legacy_allowed)
+                for name, value in zip(FILES, legacy_texts)
+            ]
+            old_risk.update(risky_selectors(legacy_rules))
+            notes.append('V1.9 首次发布：已核对 V1.8 稳定基线，仅继承完全相同的已有宽范围规则；新增宽范围规则仍禁止发布')
+        else:
+            notes.append('未取得完整的 V1.8 稳定基线：不豁免任何宽范围规则')
     new_risk = sorted(set(risky_selectors(actual)) - old_risk)
     if new_risk:
         issues.append(f'出现 {len(new_risk)} 条新增的极宽范围危险规则（即使批准变更也禁止自动发布）')
@@ -184,7 +201,7 @@ def main():
                                head_report_prefix=args.head_report_prefix, report_version=args.report_version)
         if issues:
             print('发现规则更新风险：\n' + '\n'.join('- '+x for x in issues),file=sys.stderr)
-            print('请查看 reports/audit.md；已阻止提交，保留上次已发布版本。',file=sys.stderr)
+            print(f'请查看 {args.report}/audit.md；已阻止提交，保留上次已发布版本。',file=sys.stderr)
             return 1
         print('发布前审计通过；未发现阻断条件。')
         return 0
