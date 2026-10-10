@@ -3,6 +3,8 @@ import json
 import tempfile
 import unittest
 from pathlib import Path
+from subprocess import CompletedProcess
+from unittest.mock import patch
 from scripts.analyze_rules_v1102 import analyze, save, direct_first_review
 
 class V1102Tests(unittest.TestCase):
@@ -27,13 +29,33 @@ class V1102Tests(unittest.TestCase):
     def test_output_is_read_only(self):
         old=(self.a.read_bytes(),self.b.read_bytes())
         out=self.root/'reports'
-        save(self.a,self.b,out)
+        with patch('scripts.analyze_rules_v1102.subprocess.run',
+                   return_value=CompletedProcess(args=['git', 'show'], returncode=128, stdout='', stderr='not found')):
+            save(self.a,self.b,out)
         for name in ['rule_types.md','domain_overlap.csv','ip_overlap.csv',
                      'priority_audit.md','priority_audit.json','rule_analysis_diff.md']:
             self.assertTrue((out/name).exists())
         d=json.loads((out/'priority_audit.json').read_text(encoding='utf-8'))
         self.assertEqual(d['rule_count'],11)
         self.assertFalse(d['baseline_found'])
+        self.assertEqual(old,(self.a.read_bytes(),self.b.read_bytes()))
+
+    def test_output_with_existing_baseline(self):
+        # 当前 main 即使已经发布旧报告，也应独立可测，且基线差异应正确计算。
+        old=self.a.read_bytes(),self.b.read_bytes()
+        baseline=json.dumps({'signatures':['retired-candidate']})
+        response=CompletedProcess(args=['git','show'],returncode=0,stdout=baseline,stderr='')
+        out=self.root/'with-existing-baseline'
+        with patch('scripts.analyze_rules_v1102.subprocess.run',return_value=response) as mocked:
+            save(self.a,self.b,out)
+            mocked.assert_called_once_with(
+                ['git','show','HEAD:reports/v1.10/priority_audit.json'],
+                capture_output=True,text=True,check=False)
+        data=json.loads((out/'priority_audit.json').read_text(encoding='utf-8'))
+        self.assertTrue(data['baseline_found'])
+        self.assertEqual(data['removed_candidates'],1)
+        self.assertEqual(data['added_candidates'],data['unique_pairs'])
+        self.assertIn('减少1对候选',(out/'rule_analysis_diff.md').read_text(encoding='utf-8'))
         self.assertEqual(old,(self.a.read_bytes(),self.b.read_bytes()))
 
     def test_direct_first_candidates_file_order(self):
