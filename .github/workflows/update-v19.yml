@@ -1,0 +1,78 @@
+name: 更新 Quantumult X V1.9 分类规则（测试）
+
+on:
+  workflow_dispatch:
+    inputs:
+      approve_routing_changes:
+        description: '经人工核对后允许本版本的分流变化（危险规则仍然拒绝）'
+        type: boolean
+        default: false
+        required: false
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qx-rule-v19-update
+  cancel-in-progress: false
+
+jobs:
+  update_v19:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: 检出最新 main 分支
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+          persist-credentials: true
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: 运行完整回归测试
+        run: python -m unittest discover -s tests -v
+      - name: 生成 V1.9 独立规则
+        run: python scripts/aggregate.py --manifest sources_v19.json --out-dir rules/v1.9 --report reports/v1.9 --display-version V1.9
+      - name: 校验 V1.9 并比较 V1.9 旧版
+        env:
+          APPROVE_CHANGES: ${{ inputs.approve_routing_changes || 'false' }}
+        run: |
+          if [ "$APPROVE_CHANGES" = 'true' ]; then
+            python scripts/audit_rules.py --out-dir rules/v1.9 --report reports/v1.9 --policy-file config/policies_v19.json --head-rule-prefix rules/v1.9 --head-report-prefix reports/v1.9 --report-version V1.9 --approve-changes
+          else
+            python scripts/audit_rules.py --out-dir rules/v1.9 --report reports/v1.9 --policy-file config/policies_v19.json --head-rule-prefix rules/v1.9 --head-report-prefix reports/v1.9 --report-version V1.9
+          fi
+      - name: 保留审计报告及构建文件
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qx-v19-audit-${{ github.run_number }}
+          path: |
+            reports/v1.9/
+            rules/v1.9/
+          retention-days: 7
+          if-no-files-found: warn
+      - name: 安全发布 V1.9 规则与报告
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rules/v1.9/ reports/v1.9/
+          if git diff --cached --quiet; then
+            echo 'V1.9 聚合内容无变化；不创建无意义提交'
+          else
+            BASE_SHA="$(git rev-parse HEAD)"
+            git commit -m 'chore: 发布 V1.9 分类聚合规则'
+            git fetch origin main
+            if ! git diff --quiet "$BASE_SHA" origin/main -- sources_v19.json scripts/ tests/ config/policies_v19.json .github/workflows/update-v19.yml; then
+              echo '::error::构建期间 V1.9 输入或生成脚本变更，需重新运行'
+              exit 1
+            fi
+            if ! git rebase origin/main; then
+              git rebase --abort || true
+              echo '::error::V1.9 无法安全同步远程提交，需重新运行'
+              exit 1
+            fi
+            git push origin HEAD:main
+          fi
