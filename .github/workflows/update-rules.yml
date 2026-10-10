@@ -2,8 +2,14 @@ name: 更新 Quantumult X 聚合规则
 
 on:
   workflow_dispatch:
+    inputs:
+      approve_routing_changes:
+        description: '已人工检查更新差异，允许较大变动或首选策略变化（不会放行明显危险规则）'
+        type: boolean
+        required: false
+        default: false
   schedule:
-    # UTC 03:17，每三天生成一次。Cron 的 */3 是“每月日期按3步长”，不是严格72小时。
+    # 北京时间11:17；日期1、4、7……号执行，并非严格每72小时。
     - cron: '17 3 */3 * *'
 
 permissions:
@@ -28,20 +34,42 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: 执行离线测试
+      - name: 执行离线单元测试
         run: python -m unittest discover -s tests -v
 
       - name: 下载并聚合公开规则
         run: python scripts/aggregate.py --manifest sources.json --out-dir rules --report reports
 
-      - name: 提交成功生成的规则和审计报告
+      - name: 发布前核验和新旧版本回归检查
+        env:
+          APPROVE_CHANGES: ${{ inputs.approve_routing_changes || 'false' }}
+        run: |
+          if [ "$APPROVE_CHANGES" = 'true' ]; then
+            python scripts/audit_rules.py --approve-changes
+          else
+            python scripts/audit_rules.py
+          fi
+
+      - name: 保留本次报告供失败排查
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: qx-rule-audit-${{ github.run_number }}
+          path: |
+            reports/
+            rules/BeforeTikTok.list
+            rules/AfterTikTok.list
+          retention-days: 7
+          if-no-files-found: warn
+
+      - name: 提交通过审计的规则及报告
         run: |
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add rules/BeforeTikTok.list rules/AfterTikTok.list reports/README.md reports/summary.json reports/conflicts.csv
+          git add rules/BeforeTikTok.list rules/AfterTikTok.list reports/README.md reports/summary.json reports/conflicts.csv reports/audit.md
           if git diff --cached --quiet; then
-            echo '上游无变化，无需提交'
+            echo '上游没有需要发布的变化'
           else
-            git commit -m 'chore: 自动更新 Quantumult X 聚合规则'
+            git commit -m 'chore: 经审计更新 Quantumult X 聚合规则'
             git push
           fi
