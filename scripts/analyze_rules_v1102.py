@@ -96,6 +96,34 @@ def key(row):
     values=sorted([(row['A规则'],row['A策略']),(row['B规则'],row['B策略'])])
     return hashlib.sha256(json.dumps([row['关系'],values],ensure_ascii=False).encode()).hexdigest()
 
+def file_order(location):
+    """仅比较聚合文件记录顺序，不推断 Quantumult X 的运行时匹配优先级。"""
+    segment, line = location.split(':', 1)
+    return (0 if segment == '前段' else 1, int(line))
+
+def direct_first_review(rows):
+    """从域名包含候选中提取直连在文件中先出现的异策略规则对。"""
+    found = []
+    for row in rows:
+        if row['关系'] != '域名/父级后缀':
+            continue
+        if ('direct' in (row['A策略'], row['B策略']) and
+                row['A策略'] != row['B策略']):
+            a_first = file_order(row['A位置']) < file_order(row['B位置'])
+            first = 'A' if a_first else 'B'
+            second = 'B' if a_first else 'A'
+            if row[first+'策略'] == 'direct':
+                found.append({
+                    '先出现规则': row[first+'规则'],
+                    '先出现来源': row[first+'来源'],
+                    '先出现位置': row[first+'位置'],
+                    '后出现规则': row[second+'规则'],
+                    '后出现策略': row[second+'策略'],
+                    '后出现来源': row[second+'来源'],
+                    '后出现位置': row[second+'位置'],
+                })
+    return sorted(found, key=lambda d: file_order(d['先出现位置']))
+
 def save(before,after,report):
     types,domains,ips=analyze(before,after)
     report.mkdir(parents=True,exist_ok=True)
@@ -110,6 +138,7 @@ def save(before,after,report):
     md += [f'| {name} | {count} | {count/total:.2%} |' for name,count in types.most_common()]
     (report/'rule_types.md').write_text('\n'.join(md)+'\n',encoding='utf-8')
     rows=domains+ips
+    direct_first=direct_first_review(domains)
     signatures=sorted({key(r) for r in rows})
     levels=Counter(r['级别'] for r in rows)
     old=subprocess.run(['git','show','HEAD:reports/v1.10/priority_audit.json'],
@@ -125,6 +154,8 @@ def save(before,after,report):
     data=dict(version='V1.10.2',rule_count=total,rule_types=dict(types),
               domain_candidates=len(domains),ip_candidates=len(ips),
               risk_levels=dict(levels),unique_pairs=len(signatures),signatures=signatures,
+              direct_first_domain_candidate_count=len(direct_first),
+              direct_first_domain_examples=direct_first[:40],
               baseline_found=previous is not None,
               added_candidates=len(added) if previous is not None else None,
               removed_candidates=len(removed) if previous is not None else None)
@@ -139,6 +170,13 @@ def save(before,after,report):
         '| 级别 | 关系 | A规则及策略 | B规则及策略 |','|---|---|---|---|']
     for r in sorted(rows,key=lambda x:(x['级别'],x['关系']))[:30]:
         md.append(f'| {r["级别"]} | {r["关系"]} | {r["A规则"]} → {r["A策略"]} | {r["B规则"]} → {r["B策略"]} |')
+    md += ['', '## 优先人工复核：文件顺序中直连先于专项代理的域名覆盖', '',
+           f'- 此类候选：{len(direct_first)}对（文件顺序，不是实际客户端命中顺序）', '',
+           '| 直连规则 | 随后的代理规则 | 代理策略 | 来源 |',
+           '|---|---|---|---|']
+    for item in direct_first[:40]:
+        md.append(f'| {item["先出现规则"]} | {item["后出现规则"]} | {item["后出现策略"]} | {item["先出现来源"]} → {item["后出现来源"]} |')
+    md += ['', '以上关系不代表错误；如SteamCN在Steam代理规则前，可能是有意设置的国内CDN直连例外。']
     md += ['','## 分析边界','','- 仅静态候选，不代表Quantumult X真实规则命中或匹配优化优先级。',
            '- 不包含前置Advertising、独立TikTok、用户本地规则；关键词及通配符只检查已列域名样例。',
            '- 仅标注人工复核优先级，不自动删改规则，不增加发布阻断条件。',
