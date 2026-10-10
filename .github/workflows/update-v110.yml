@@ -41,6 +41,13 @@ jobs:
         run: python scripts/aggregate.py --manifest sources_v110.json --out-dir rules/v1.10 --report reports/v1.10 --display-version V1.10
       - name: 生成可复核的策略重叠分类报告（不修改分流）
         run: python scripts/conflict_review_v110.py --summary reports/v1.10/summary.json --out-dir reports/v1.10
+      - name: V1.10.2 静态覆盖分析（仅报告，不新增发布阻断）
+        continue-on-error: true
+        run: |
+          python scripts/analyze_rules_v1102.py \
+            --before rules/v1.10/BeforeTikTok.list \
+            --after rules/v1.10/AfterTikTok.list \
+            --report reports/v1.10
       - name: V1.10 安全审计
         env:
           APPROVE_CHANGES: ${{ inputs.approve_routing_changes || 'false' }}
