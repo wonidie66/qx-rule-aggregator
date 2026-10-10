@@ -9,6 +9,12 @@ on:
         default: false
         required: false
 
+  push:
+    branches: [main]
+    paths:
+      - 'scripts/analyze_rules_v1102.py'
+      - 'tests/test_rule_analysis_v1102.py'
+      - '.github/workflows/update-v110.yml'
   schedule:
     # 北京时间11:17，每月约每3天运行一次；月末并非严格72小时。
     - cron: '17 3 */3 * *'
