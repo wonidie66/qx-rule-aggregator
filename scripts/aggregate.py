@@ -117,7 +117,7 @@ def parse_source(text: str, src: dict) -> list[tuple[str, str, str, int]]:
     return result
 
 
-def aggregate(sources: list[dict], fetch: Callable[[str],str]):
+def aggregate(sources: list[dict], fetch: Callable[[str],str], display_version='V1.8'):
     """返回列表文本与报告。严格保留原始源顺序和源内规则顺序。"""
     contents = [None] * len(sources)
     with ThreadPoolExecutor(max_workers=8) as pool:
@@ -131,12 +131,12 @@ def aggregate(sources: list[dict], fetch: Callable[[str],str]):
 
     output = {
         '前段': [
-            '# Quantumult X V1.8 分流聚合：前段（在 TikTok 独立规则之前）',
+            f'# Quantumult X {display_version} 分流聚合：前段（在 TikTok 独立规则之前）',
             '# 每条规则自带策略；不得在远程订阅上指定 force-policy。',
             '# 保留 V1.7 原始先后顺序，不包括广告、TikTok 独立规则。',
         ],
         '后段': [
-            '# Quantumult X V1.8 分流聚合：后段（在 TikTok 独立规则之后）',
+            f'# Quantumult X {display_version} 分流聚合：后段（在 TikTok 独立规则之后）',
             '# 每条规则自带策略；不得在远程订阅上指定 force-policy。',
             '# 保留 V1.7 原始先后顺序，不包括广告、TikTok 独立规则。',
         ],
@@ -225,13 +225,14 @@ def save_reports(report: dict, report_dir: Path):
 
 def main(argv=None):
     parser=argparse.ArgumentParser(description='自动聚合 Quantumult X 公开分流资源')
+    parser.add_argument('--display-version', default='V1.8')
     parser.add_argument('--manifest',default='sources.json')
     parser.add_argument('--out-dir',default='rules')
     parser.add_argument('--report',default='reports')
     args=parser.parse_args(argv)
     try:
         sources=load_manifest(Path(args.manifest))
-        contents,report=aggregate(sources,fetch_text)
+        contents,report=aggregate(sources,fetch_text,display_version=args.display_version)
         # 只有全部下载、解析、检查成功后才落盘写最终规则，失败由Actions保留前一版本。
         output_dir=Path(args.out_dir)
         output_dir.mkdir(parents=True,exist_ok=True)

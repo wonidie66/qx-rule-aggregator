@@ -77,7 +77,7 @@ def risky_selectors(rule_sets):
 
 def check_generated(outdir: Path, report_dir: Path, policy_file: Path,
                     max_delta_percent: float, approve_changes: bool,
-                    head_reader=text_from_head):
+                    head_reader=text_from_head, head_rule_prefix='rules', head_report_prefix='reports', report_version='V1.8.1'):
     allowed = set(json.loads(policy_file.read_text(encoding='utf-8'))['allowed_policies'])
     summary = json.loads((report_dir / 'summary.json').read_text(encoding='utf-8'))
     actual = []
@@ -93,7 +93,7 @@ def check_generated(outdir: Path, report_dir: Path, policy_file: Path,
         if len(raw) != summary['各段字节数'][group]:
             issues.append(f'{name} 字节数与构建报告不一致')
         actual.append(parse_rule_text(raw.decode('utf-8-sig'),name,allowed))
-        base_content = head_reader(f'rules/{name}')
+        base_content = head_reader(f'{head_rule_prefix}/{name}')
         previous.append(parse_rule_text(base_content,name+'[HEAD]',allowed) if base_content else [])
     total = sum(map(len,actual))
     if total != summary['输出规则总数']:
@@ -123,7 +123,7 @@ def check_generated(outdir: Path, report_dir: Path, policy_file: Path,
     if new_risk:
         issues.append(f'出现 {len(new_risk)} 条新增的极宽范围危险规则（即使批准变更也禁止自动发布）')
 
-    old_summary_text = head_reader('reports/summary.json')
+    old_summary_text = head_reader(f'{head_report_prefix}/summary.json')
     current_conflicts = len(summary['完全相同条件但策略不同的冲突'])
     if old_summary_text:
         try:
@@ -134,7 +134,7 @@ def check_generated(outdir: Path, report_dir: Path, policy_file: Path,
             notes.append(f'上一次冲突报告不能解析：{exc}')
 
     rows = [
-        '# V1.8.1 规则发布安全审计', '',
+        f'# {report_version} 规则发布安全审计', '',
         f'- 本次规则条数：{total}',
         f'- 上次已发布规则条数：{old_total if old_total else "无可比版本"}',
         f'- 数量变化：{delta:+.2f}%' if old_total else '- 数量变化：不适用',
@@ -173,10 +173,15 @@ def main():
     parser.add_argument('--policy-file', default='config/policies.json')
     parser.add_argument('--max-delta-percent', type=float, default=15)
     parser.add_argument('--approve-changes', action='store_true')
+    parser.add_argument('--report-version', default='V1.8.1')
+    parser.add_argument('--head-rule-prefix', default='rules')
+    parser.add_argument('--head-report-prefix', default='reports')
     args=parser.parse_args()
     try:
         issues=check_generated(Path(args.out_dir),Path(args.report),Path(args.policy_file),
-                               args.max_delta_percent,args.approve_changes)
+                               args.max_delta_percent,args.approve_changes,
+                               head_rule_prefix=args.head_rule_prefix,
+                               head_report_prefix=args.head_report_prefix, report_version=args.report_version)
         if issues:
             print('发现规则更新风险：\n' + '\n'.join('- '+x for x in issues),file=sys.stderr)
             print('请查看 reports/audit.md；已阻止提交，保留上次已发布版本。',file=sys.stderr)
