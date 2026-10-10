@@ -1,0 +1,636 @@
+{
+  "schema_version": 1,
+  "description": "Quantumult X V1.10 扩展分流，新增22份来源与两个业务策略，V1.9 稳定版独立保留，继续使用 TikTok 单独规则。",
+  "sources": [
+    {
+      "tag": "OpenAI",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/OpenAI/OpenAI.list",
+      "policy": "分流-AI服务",
+      "segment": "前段"
+    },
+    {
+      "tag": "Claude",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Claude/Claude.list",
+      "policy": "分流-AI服务",
+      "segment": "前段"
+    },
+    {
+      "tag": "Gemini",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Gemini/Gemini.list",
+      "policy": "分流-AI服务",
+      "segment": "前段"
+    },
+    {
+      "tag": "YouTube",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/YouTube/YouTube.list",
+      "policy": "分流-视频直播",
+      "segment": "前段"
+    },
+    {
+      "tag": "Netflix",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Netflix/Netflix.list",
+      "policy": "分流-流媒体解锁",
+      "segment": "前段"
+    },
+    {
+      "tag": "Disney",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Disney/Disney.list",
+      "policy": "分流-流媒体解锁",
+      "segment": "前段"
+    },
+    {
+      "tag": "PrimeVideo",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/PrimeVideo/PrimeVideo.list",
+      "policy": "分流-流媒体解锁",
+      "segment": "前段"
+    },
+    {
+      "tag": "HBOUSA",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/HBOUSA/HBOUSA.list",
+      "policy": "分流-流媒体解锁",
+      "segment": "前段"
+    },
+    {
+      "tag": "Twitch",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Twitch/Twitch.list",
+      "policy": "分流-视频直播",
+      "segment": "前段"
+    },
+    {
+      "tag": "抖音国内",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/DouYin/DouYin.list",
+      "policy": "direct",
+      "segment": "前段"
+    },
+    {
+      "tag": "Telegram",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Telegram/Telegram.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Twitter",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Twitter/Twitter.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Instagram",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Instagram/Instagram.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Reddit",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Reddit/Reddit.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Discord",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Discord/Discord.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Spotify",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Spotify/Spotify.list",
+      "policy": "分流-海外音乐",
+      "segment": "后段"
+    },
+    {
+      "tag": "GitHub",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GitHub/GitHub.list",
+      "policy": "分流-开发平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "GitLab",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GitLab/GitLab.list",
+      "policy": "分流-开发平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "Developer",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Developer/Developer.list",
+      "policy": "分流-海外通用",
+      "segment": "后段"
+    },
+    {
+      "tag": "Scholar",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Scholar/Scholar.list",
+      "policy": "分流-学术科研",
+      "segment": "后段"
+    },
+    {
+      "tag": "GoogleDrive",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GoogleDrive/GoogleDrive.list",
+      "policy": "分流-云办公",
+      "segment": "后段"
+    },
+    {
+      "tag": "Google",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Google/Google.list",
+      "policy": "分流-海外通用",
+      "segment": "后段"
+    },
+    {
+      "tag": "AppleTV",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/AppleTV/AppleTV.list",
+      "policy": "分流-流媒体解锁",
+      "segment": "后段"
+    },
+    {
+      "tag": "AppleMusic",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/AppleMusic/AppleMusic.list",
+      "policy": "分流-苹果服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "Apple",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Apple/Apple.list",
+      "policy": "分流-苹果服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "Copilot",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Copilot/Copilot.list",
+      "policy": "分流-AI服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "Microsoft",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Microsoft/Microsoft.list",
+      "policy": "分流-微软服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "SteamCN",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/SteamCN/SteamCN.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Steam",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Steam/Steam.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "BiliBili国内",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/BiliBili/BiliBili.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "百度国内",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Baidu/Baidu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "微博国内",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Weibo/Weibo.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Notion",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Notion/Notion.list",
+      "policy": "分流-云办公",
+      "segment": "后段"
+    },
+    {
+      "tag": "Dropbox",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Dropbox/Dropbox.list",
+      "policy": "分流-云办公",
+      "segment": "后段"
+    },
+    {
+      "tag": "Pinterest",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Pinterest/Pinterest.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Facebook",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Facebook/Facebook.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "GoogleVoice",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GoogleVoice/GoogleVoice.list",
+      "policy": "分流-海外通用",
+      "segment": "后段"
+    },
+    {
+      "tag": "拼多多直连",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Pinduoduo/Pinduoduo.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "腾讯全家桶直连",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Tencent/Tencent.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "微信直连",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/WeChat/WeChat.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "腾讯视频直连",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/TencentVideo/TencentVideo.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "支付宝",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/AliPay/AliPay.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "京东",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/JingDong/JingDong.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "美团",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/MeiTuan/MeiTuan.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "闲鱼",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/XianYu/XianYu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "中国银联",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/UnionPay/UnionPay.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "小红书",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/XiaoHongShu/XiaoHongShu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "知乎",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Zhihu/Zhihu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "快手",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/KuaiShou/KuaiShou.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "爱奇艺",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/iQIYI/iQIYI.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "优酷",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Youku/Youku.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "网易云音乐",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/NetEaseMusic/NetEaseMusic.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "高德地图",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/GaoDe/GaoDe.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "携程",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/XieCheng/XieCheng.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "钉钉",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/DingTalk/DingTalk.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "小米",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/XiaoMi/XiaoMi.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "中国知网",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/CNKI/CNKI.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "万方数据",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Wanfang/Wanfang.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Gitee",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Gitee/Gitee.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Bing",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Bing/Bing.list",
+      "policy": "分流-微软服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "OneDrive",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/OneDrive/OneDrive.list",
+      "policy": "分流-微软服务",
+      "segment": "后段"
+    },
+    {
+      "tag": "Docker",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Docker/Docker.list",
+      "policy": "分流-开发平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "Slack",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Slack/Slack.list",
+      "policy": "分流-云办公",
+      "segment": "后段"
+    },
+    {
+      "tag": "LINE",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Line/Line.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "Pixiv",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Pixiv/Pixiv.list",
+      "policy": "分流-海外通用",
+      "segment": "后段"
+    },
+    {
+      "tag": "PayPal",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/PayPal/PayPal.list",
+      "policy": "分流-跨境购物",
+      "segment": "后段"
+    },
+    {
+      "tag": "Amazon",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Amazon/Amazon.list",
+      "policy": "分流-跨境购物",
+      "segment": "后段"
+    },
+    {
+      "tag": "12306",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/12306/12306.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "滴滴出行",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/DiDi/DiDi.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "饿了么",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Eleme/Eleme.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "豆瓣",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/DouBan/DouBan.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "雪球",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/XueQiu/XueQiu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "CSDN",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/CSDN/CSDN.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "BaiDuTieBa",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/BaiDuTieBa/BaiDuTieBa.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "SFExpress",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/SFExpress/SFExpress.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Himalaya",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Himalaya/Himalaya.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Huawei",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Huawei/Huawei.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "HuYa",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/HuYa/HuYa.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "JueJin",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/JueJin/JueJin.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Wikipedia",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Wikipedia/Wikipedia.list",
+      "policy": "分流-学术科研",
+      "segment": "后段"
+    },
+    {
+      "tag": "LinkedIn",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/LinkedIn/LinkedIn.list",
+      "policy": "分流-国际社交",
+      "segment": "后段"
+    },
+    {
+      "tag": "酷狗酷我",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/KugouKuwo/KugouKuwo.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "咪咕音乐",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Migu/Migu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "迅雷",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Xunlei/Xunlei.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "TapTap",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/TapTap/TapTap.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "坚果云",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/JianGuoYun/JianGuoYun.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "问卷星",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/WenJuanXing/WenJuanXing.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "学习通",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/ShiJiChaoXing/ShiJiChaoXing.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "科大讯飞",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/iFlytek/iFlytek.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "快递100",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/KuaiDi100/KuaiDi100.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "什么值得买",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/SMZDM/SMZDM.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Keep运动",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Keep/Keep.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "简书",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/JianShu/JianShu.list",
+      "policy": "direct",
+      "segment": "后段"
+    },
+    {
+      "tag": "Epic Games",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Epic/Epic.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "PlayStation",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/PlayStation/PlayStation.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "Xbox",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Xbox/Xbox.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "Nintendo",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Nintendo/Nintendo.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "Riot Games",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Riot/Riot.list",
+      "policy": "分流-游戏平台",
+      "segment": "后段"
+    },
+    {
+      "tag": "eBay",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/eBay/eBay.list",
+      "policy": "分流-跨境购物",
+      "segment": "后段"
+    },
+    {
+      "tag": "Shopify",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Shopify/Shopify.list",
+      "policy": "分流-跨境购物",
+      "segment": "后段"
+    },
+    {
+      "tag": "SoundCloud",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/SoundCloud/SoundCloud.list",
+      "policy": "分流-海外音乐",
+      "segment": "后段"
+    },
+    {
+      "tag": "Vimeo",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Vimeo/Vimeo.list",
+      "policy": "分流-视频直播",
+      "segment": "后段"
+    },
+    {
+      "tag": "Figma",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Figma/Figma.list",
+      "policy": "分流-云办公",
+      "segment": "后段"
+    },
+    {
+      "tag": "Proxy",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/Proxy/Proxy.list",
+      "policy": "分流-海外通用",
+      "segment": "后段"
+    },
+    {
+      "tag": "China",
+      "url": "https://cdn.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/QuantumultX/China/China.list",
+      "policy": "direct",
+      "segment": "后段"
+    }
+  ]
+}
