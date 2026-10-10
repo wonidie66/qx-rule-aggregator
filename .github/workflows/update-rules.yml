@@ -1,0 +1,47 @@
+name: 更新 Quantumult X 聚合规则
+
+on:
+  workflow_dispatch:
+  schedule:
+    # UTC 03:17，每三天生成一次。Cron 的 */3 是“每月日期按3步长”，不是严格72小时。
+    - cron: '17 3 */3 * *'
+
+permissions:
+  contents: write
+
+concurrency:
+  group: qx-rule-update
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: 检出仓库
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: 安装 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: 执行离线测试
+        run: python -m unittest discover -s tests -v
+
+      - name: 下载并聚合公开规则
+        run: python scripts/aggregate.py --manifest sources.json --out-dir rules --report reports
+
+      - name: 提交成功生成的规则和审计报告
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add rules/BeforeTikTok.list rules/AfterTikTok.list reports/README.md reports/summary.json reports/conflicts.csv
+          if git diff --cached --quiet; then
+            echo '上游无变化，无需提交'
+          else
+            git commit -m 'chore: 自动更新 Quantumult X 聚合规则'
+            git push
+          fi
