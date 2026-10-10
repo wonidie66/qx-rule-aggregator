@@ -39,3 +39,12 @@ jobs:
             --after rules/v1.10/AfterTikTok.list \
             --report "${RUNNER_TEMP}/qx-v1102-analysis"
           python -c "import json,os,pathlib; p=pathlib.Path(os.environ['RUNNER_TEMP'])/'qx-v1102-analysis/priority_audit.json'; a=json.loads(p.read_text(encoding='utf-8')); assert a['rule_count'] > 1000; assert a['domain_candidates'] >= 0"
+
+      - name: 保存 V1.10.2 完整规则分析报告供下载
+        if: always()
+        uses: actions/upload-artifact@v6
+        with:
+          name: qx-v1102-pr-analysis-${{ github.run_number }}
+          path: ${{ runner.temp }}/qx-v1102-analysis/
+          retention-days: 7
+          if-no-files-found: warn
