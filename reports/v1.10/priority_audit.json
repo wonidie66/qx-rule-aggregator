@@ -1968,7 +1968,7 @@
       "后出现位置": "后段:11478"
     }
   ],
-  "baseline_found": false,
-  "added_candidates": null,
-  "removed_candidates": null
+  "baseline_found": true,
+  "added_candidates": 0,
+  "removed_candidates": 0
 }
