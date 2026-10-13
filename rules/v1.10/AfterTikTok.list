@@ -1251,7 +1251,6 @@ USER-AGENT,Music*,分流-苹果服务
 
 # 来源：Apple | 策略：分流-苹果服务
 HOST,apps.apple.com,分流-苹果服务
-HOST,itunes.apple.com,分流-苹果服务
 HOST,a1.mzstatic.com,分流-苹果服务
 HOST,a2.mzstatic.com,分流-苹果服务
 HOST,a3.mzstatic.com,分流-苹果服务
@@ -1477,7 +1476,6 @@ HOST,www.apple.com,分流-苹果服务
 HOST,www.apple.com.edgekey.net,分流-苹果服务
 HOST,www.apple.com.edgekey.net.globalredir.akadns.net,分流-苹果服务
 HOST,xp.apple.com,分流-苹果服务
-HOST,gspe1-ssl.ls.apple.com,分流-苹果服务
 HOST,news-client-search.apple.com,分流-苹果服务
 HOST,api-glb-sea.smoot.apple.com,分流-苹果服务
 HOST,apple.comscoreresearch.com,分流-苹果服务
@@ -1488,6 +1486,9 @@ HOST,developer.apple.com,分流-苹果服务
 HOST,devimages-cdn.apple.com,分流-苹果服务
 HOST,devstreaming-cdn.apple.com,分流-苹果服务
 HOST,docs-assets.developer.apple.com,分流-苹果服务
+HOST,gspe1-ssl.ls.apple.com,分流-苹果服务
+HOST,hls-svod.itunes.apple.com,分流-苹果服务
+HOST,itunes.apple.com,分流-苹果服务
 HOST,js-cdn.music.apple.com,分流-苹果服务
 HOST,lookup-api.apple.com,分流-苹果服务
 HOST,mask-api.fe.apple-dns.net,分流-苹果服务
@@ -1511,7 +1512,6 @@ HOST,fmfmobile.icloud.com,分流-苹果服务
 HOST,fmipmobile.icloud.com,分流-苹果服务
 HOST,statici.icloud.com,分流-苹果服务
 HOST,amp-api.fitness.apple.com,分流-苹果服务
-HOST,hls-svod.itunes.apple.com,分流-苹果服务
 HOST,guzzoni.apple.com,分流-苹果服务
 HOST,beta.apple.com,分流-苹果服务
 HOST,testflight.apple.com,分流-苹果服务
@@ -3059,11 +3059,11 @@ HOST-SUFFIX,iphoto.wang,分流-苹果服务
 HOST-SUFFIX,musickit.net,分流-苹果服务
 HOST-SUFFIX,wwwapplemusic.com,分流-苹果服务
 HOST-SUFFIX,apple-dns.net,分流-苹果服务
+HOST-SUFFIX,cdn-apple.com,分流-苹果服务
 HOST-SUFFIX,digicert.com,分流-苹果服务
 HOST-SUFFIX,apple-cloudkit.com,分流-苹果服务
 HOST-SUFFIX,apple-livephotoskit.com,分流-苹果服务
 HOST-SUFFIX,apzones.com,分流-苹果服务
-HOST-SUFFIX,cdn-apple.com,分流-苹果服务
 HOST-SUFFIX,icloud-content.com.cn,分流-苹果服务
 HOST-SUFFIX,icloud.cn,分流-苹果服务
 HOST-WILDCARD,*-content.icloud.com.cn,分流-苹果服务
