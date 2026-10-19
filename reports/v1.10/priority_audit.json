@@ -1,9 +1,9 @@
 {
   "version": "V1.10.2",
-  "rule_count": 22019,
+  "rule_count": 22022,
   "rule_types": {
     "HOST": 570,
-    "HOST-SUFFIX": 19682,
+    "HOST-SUFFIX": 19685,
     "HOST-KEYWORD": 74,
     "IP-CIDR": 1497,
     "IP-ASN": 9,
@@ -1947,7 +1947,7 @@
       "后出现规则": "HOST-SUFFIX,bx.in.th",
       "后出现策略": "分流-海外通用",
       "后出现来源": "Proxy",
-      "后出现位置": "后段:11467"
+      "后出现位置": "后段:11468"
     },
     {
       "先出现规则": "HOST-SUFFIX,qcloud.com",
@@ -1956,7 +1956,7 @@
       "后出现规则": "HOST-SUFFIX,shortconn.im.qcloud.com",
       "后出现策略": "分流-海外通用",
       "后出现来源": "Proxy",
-      "后出现位置": "后段:15686"
+      "后出现位置": "后段:15689"
     },
     {
       "先出现规则": "HOST-SUFFIX,mi.com",
@@ -1965,7 +1965,7 @@
       "后出现规则": "HOST-SUFFIX,c.mi.com",
       "后出现策略": "分流-海外通用",
       "后出现来源": "Proxy",
-      "后出现位置": "后段:11478"
+      "后出现位置": "后段:11479"
     }
   ],
   "baseline_found": true,

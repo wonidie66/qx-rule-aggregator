@@ -1501,7 +1501,6 @@ HOST,news-client.apple.com,分流-苹果服务
 HOST,news-edge.apple.com,分流-苹果服务
 HOST,news-events.apple.com,分流-苹果服务
 HOST,sandbox.itunes.apple.com,分流-苹果服务
-HOST,testflight.apple.com,分流-苹果服务
 HOST,hls-amt.itunes.apple.com,分流-苹果服务
 HOST,hls.itunes.apple.com,分流-苹果服务
 HOST,np-edge.itunes.apple.com,分流-苹果服务
@@ -1515,6 +1514,7 @@ HOST,amp-api.fitness.apple.com,分流-苹果服务
 HOST,hls-svod.itunes.apple.com,分流-苹果服务
 HOST,guzzoni.apple.com,分流-苹果服务
 HOST,beta.apple.com,分流-苹果服务
+HOST,testflight.apple.com,分流-苹果服务
 HOST,www-cdn.icloud.com.akadns.net,分流-苹果服务
 HOST-SUFFIX,100beatscheap.com,分流-苹果服务
 HOST-SUFFIX,1monsterbeatsbydreus.com,分流-苹果服务
@@ -2696,6 +2696,7 @@ HOST-SUFFIX,applepaysupplies.net,分流-苹果服务
 HOST-SUFFIX,applepaysupplies.tv,分流-苹果服务
 HOST-SUFFIX,applewallet.com,分流-苹果服务
 HOST-SUFFIX,applewallet.tv,分流-苹果服务
+HOST-SUFFIX,appsto.re,分流-苹果服务
 HOST-SUFFIX,appstore.co.id,分流-苹果服务
 HOST-SUFFIX,appstore.com,分流-苹果服务
 HOST-SUFFIX,appstore.hk,分流-苹果服务
@@ -3008,7 +3009,6 @@ HOST-SUFFIX,iphoto.wang,分流-苹果服务
 HOST-SUFFIX,musickit.net,分流-苹果服务
 HOST-SUFFIX,wwwapplemusic.com,分流-苹果服务
 HOST-SUFFIX,apple-dns.net,分流-苹果服务
-HOST-SUFFIX,appsto.re,分流-苹果服务
 HOST-SUFFIX,digicert.com,分流-苹果服务
 HOST-SUFFIX,apple-cloudkit.com,分流-苹果服务
 HOST-SUFFIX,apple-icloud.cn,分流-苹果服务
@@ -10742,6 +10742,7 @@ HOST-SUFFIX,6parknews.com,分流-海外通用
 HOST-SUFFIX,7capture.com,分流-海外通用
 HOST-SUFFIX,7cow.com,分流-海外通用
 HOST-SUFFIX,7mmtv.tv,分流-海外通用
+HOST-SUFFIX,7x24hrs.com,分流-海外通用
 HOST-SUFFIX,8-d.com,分流-海外通用
 HOST-SUFFIX,85cc.net,分流-海外通用
 HOST-SUFFIX,85cc.us,分流-海外通用
@@ -14281,7 +14282,9 @@ HOST-SUFFIX,merlinblog.xyz,分流-海外通用
 HOST-SUFFIX,meshrep.com,分流-海外通用
 HOST-SUFFIX,mesotw.com,分流-海外通用
 HOST-SUFFIX,messenger.com,分流-海外通用
+HOST-SUFFIX,meta.ai,分流-海外通用
 HOST-SUFFIX,meta.com,分流-海外通用
+HOST-SUFFIX,metaaivm.com,分流-海外通用
 HOST-SUFFIX,metacafe.com,分流-海外通用
 HOST-SUFFIX,metacubex.one,分流-海外通用
 HOST-SUFFIX,metafilter.com,分流-海外通用
