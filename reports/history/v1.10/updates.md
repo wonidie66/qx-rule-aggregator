@@ -9,3 +9,4 @@
 | 2026-10-13 10:34:09 UTC | [#6](https://github.com/wonidie66/qx-rule-aggregator/actions/runs/38384224911) | 规则与报告更新 | 22,019 | `32eb3327c342` / `82b6e8870a5e` | 3 |
 | 2026-10-16 08:09:33 UTC | [#7](https://github.com/wonidie66/qx-rule-aggregator/actions/runs/38871808119) | 规则与报告更新 | 22,019 | `32eb3327c342` / `338f6eade654` | 3 |
 | 2026-10-19 08:51:02 UTC | [#8](https://github.com/wonidie66/qx-rule-aggregator/actions/runs/39225670503) | 规则与报告更新 | 22,022 | `32eb3327c342` / `2fea7514a18a` | 10 |
+| 2026-10-25 08:23:44 UTC | [#10](https://github.com/wonidie66/qx-rule-aggregator/actions/runs/40176426411) | 规则与报告更新 | 22,037 | `32eb3327c342` / `d263e642b8f9` | 10 |

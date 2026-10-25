@@ -1251,7 +1251,6 @@ USER-AGENT,Music*,分流-苹果服务
 
 # 来源：Apple | 策略：分流-苹果服务
 HOST,apps.apple.com,分流-苹果服务
-HOST,itunes.apple.com,分流-苹果服务
 HOST,a1.mzstatic.com,分流-苹果服务
 HOST,a2.mzstatic.com,分流-苹果服务
 HOST,a3.mzstatic.com,分流-苹果服务
@@ -1477,7 +1476,6 @@ HOST,www.apple.com,分流-苹果服务
 HOST,www.apple.com.edgekey.net,分流-苹果服务
 HOST,www.apple.com.edgekey.net.globalredir.akadns.net,分流-苹果服务
 HOST,xp.apple.com,分流-苹果服务
-HOST,gspe1-ssl.ls.apple.com,分流-苹果服务
 HOST,news-client-search.apple.com,分流-苹果服务
 HOST,api-glb-sea.smoot.apple.com,分流-苹果服务
 HOST,apple.comscoreresearch.com,分流-苹果服务
@@ -1488,6 +1486,9 @@ HOST,developer.apple.com,分流-苹果服务
 HOST,devimages-cdn.apple.com,分流-苹果服务
 HOST,devstreaming-cdn.apple.com,分流-苹果服务
 HOST,docs-assets.developer.apple.com,分流-苹果服务
+HOST,gspe1-ssl.ls.apple.com,分流-苹果服务
+HOST,hls-svod.itunes.apple.com,分流-苹果服务
+HOST,itunes.apple.com,分流-苹果服务
 HOST,js-cdn.music.apple.com,分流-苹果服务
 HOST,lookup-api.apple.com,分流-苹果服务
 HOST,mask-api.fe.apple-dns.net,分流-苹果服务
@@ -1501,6 +1502,7 @@ HOST,news-client.apple.com,分流-苹果服务
 HOST,news-edge.apple.com,分流-苹果服务
 HOST,news-events.apple.com,分流-苹果服务
 HOST,sandbox.itunes.apple.com,分流-苹果服务
+HOST,testflight.apple.com,分流-苹果服务
 HOST,hls-amt.itunes.apple.com,分流-苹果服务
 HOST,hls.itunes.apple.com,分流-苹果服务
 HOST,np-edge.itunes.apple.com,分流-苹果服务
@@ -1511,10 +1513,8 @@ HOST,fmfmobile.icloud.com,分流-苹果服务
 HOST,fmipmobile.icloud.com,分流-苹果服务
 HOST,statici.icloud.com,分流-苹果服务
 HOST,amp-api.fitness.apple.com,分流-苹果服务
-HOST,hls-svod.itunes.apple.com,分流-苹果服务
 HOST,guzzoni.apple.com,分流-苹果服务
 HOST,beta.apple.com,分流-苹果服务
-HOST,testflight.apple.com,分流-苹果服务
 HOST,www-cdn.icloud.com.akadns.net,分流-苹果服务
 HOST-SUFFIX,100beatscheap.com,分流-苹果服务
 HOST-SUFFIX,1monsterbeatsbydreus.com,分流-苹果服务
@@ -2696,7 +2696,6 @@ HOST-SUFFIX,applepaysupplies.net,分流-苹果服务
 HOST-SUFFIX,applepaysupplies.tv,分流-苹果服务
 HOST-SUFFIX,applewallet.com,分流-苹果服务
 HOST-SUFFIX,applewallet.tv,分流-苹果服务
-HOST-SUFFIX,appsto.re,分流-苹果服务
 HOST-SUFFIX,appstore.co.id,分流-苹果服务
 HOST-SUFFIX,appstore.com,分流-苹果服务
 HOST-SUFFIX,appstore.hk,分流-苹果服务
@@ -2972,7 +2971,6 @@ HOST-SUFFIX,ukipad.com,分流-苹果服务
 HOST-SUFFIX,wwwipodlounge.com,分流-苹果服务
 HOST-SUFFIX,wwwmacbookair.com,分流-苹果服务
 HOST-SUFFIX,apple.comscoreresearch.com,分流-苹果服务
-HOST-SUFFIX,apple.news,分流-苹果服务
 HOST-SUFFIX,appleenews.com,分流-苹果服务
 HOST-SUFFIX,applemusic.berlin,分流-苹果服务
 HOST-SUFFIX,applemusic.co,分流-苹果服务
@@ -3009,6 +3007,9 @@ HOST-SUFFIX,iphoto.wang,分流-苹果服务
 HOST-SUFFIX,musickit.net,分流-苹果服务
 HOST-SUFFIX,wwwapplemusic.com,分流-苹果服务
 HOST-SUFFIX,apple-dns.net,分流-苹果服务
+HOST-SUFFIX,apple.news,分流-苹果服务
+HOST-SUFFIX,appsto.re,分流-苹果服务
+HOST-SUFFIX,cdn-apple.com,分流-苹果服务
 HOST-SUFFIX,digicert.com,分流-苹果服务
 HOST-SUFFIX,apple-cloudkit.com,分流-苹果服务
 HOST-SUFFIX,apple-icloud.cn,分流-苹果服务
@@ -3016,7 +3017,6 @@ HOST-SUFFIX,apple-livephotoskit.com,分流-苹果服务
 HOST-SUFFIX,appleicloud.cn,分流-苹果服务
 HOST-SUFFIX,applemx-icloud.com,分流-苹果服务
 HOST-SUFFIX,apzones.com,分流-苹果服务
-HOST-SUFFIX,cdn-apple.com,分流-苹果服务
 HOST-SUFFIX,icloud-apple.cn,分流-苹果服务
 HOST-SUFFIX,icloud-content.com,分流-苹果服务
 HOST-SUFFIX,icloud-content.com.cn,分流-苹果服务
@@ -3894,6 +3894,7 @@ HOST-SUFFIX,cdn-ws.content.steamchina.com,分流-游戏平台
 HOST-SUFFIX,csgo.wmsj.cn,分流-游戏平台
 HOST-SUFFIX,dl.steam.clngaa.com,分流-游戏平台
 HOST-SUFFIX,dl.steam.ksyna.com,分流-游戏平台
+HOST-SUFFIX,dota2.com,分流-游戏平台
 HOST-SUFFIX,dota2.wmsj.cn,分流-游戏平台
 HOST-SUFFIX,edge.steam-dns.top.comcast.net,分流-游戏平台
 HOST-SUFFIX,f3b7q2p3.ssl.hwcdn.net,分流-游戏平台
@@ -3919,6 +3920,7 @@ HOST-SUFFIX,steambroadcast.akamaized.net,分流-游戏平台
 HOST-SUFFIX,steamcdn-a.akamaihd.net,分流-游戏平台
 HOST-SUFFIX,steamcommunity-a.akamaihd.net,分流-游戏平台
 HOST-SUFFIX,steamcommunity.com,分流-游戏平台
+HOST-SUFFIX,steamconnecttest.com,分流-游戏平台
 HOST-SUFFIX,steamcontent.tnkjmec.com,分流-游戏平台
 HOST-SUFFIX,steamdeck.com,分流-游戏平台
 HOST-SUFFIX,steamgames.com,分流-游戏平台
@@ -3937,11 +3939,24 @@ HOST-SUFFIX,steamusercontent-a.akamaihd.net,分流-游戏平台
 HOST-SUFFIX,steamuserimages-a.akamaihd.net,分流-游戏平台
 HOST-SUFFIX,steamvideo-a.akamaihd.net,分流-游戏平台
 HOST-SUFFIX,underlords.com,分流-游戏平台
+HOST-SUFFIX,valve.net,分流-游戏平台
 HOST-SUFFIX,valvesoftware.com,分流-游戏平台
 HOST-SUFFIX,wmsjsteam.com,分流-游戏平台
 HOST-KEYWORD,steambroadcast,分流-游戏平台
 HOST-KEYWORD,steamstore,分流-游戏平台
 HOST-KEYWORD,steamuserimages,分流-游戏平台
+IP-CIDR,103.10.124.0/23,分流-游戏平台
+IP-CIDR,103.28.54.0/24,分流-游戏平台
+IP-CIDR,146.66.152.0/24,分流-游戏平台
+IP-CIDR,146.66.155.0/24,分流-游戏平台
+IP-CIDR,155.133.224.0/19,分流-游戏平台
+IP-CIDR,162.254.192.0/21,分流-游戏平台
+IP-CIDR,185.25.180.0/22,分流-游戏平台
+IP-CIDR,192.69.96.0/22,分流-游戏平台
+IP-CIDR,205.196.6.0/24,分流-游戏平台
+IP-CIDR,208.64.200.0/22,分流-游戏平台
+IP-CIDR,208.78.164.0/22,分流-游戏平台
+IP-CIDR,45.121.184.0/24,分流-游戏平台
 
 # 来源：BiliBili国内 | 策略：direct
 HOST,0gr4uqmtt8y41hcjsgrzdrc31.ourdvsss.com,direct
