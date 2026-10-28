@@ -12,12 +12,12 @@
 完全相同的匹配条件、不同策略,IP-CIDR,172.110.32.0/21,分流-视频直播,YouTube,分流-海外通用,Google,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,IP-CIDR,216.73.80.0/20,分流-视频直播,YouTube,分流-海外通用,Google,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,IP6-CIDR,2620:120:e000::/40,分流-视频直播,YouTube,分流-海外通用,Google,保留原始顺序；不自动改变策略
-完全相同的匹配条件、不同策略,HOST,hls-amt.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST,hls.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST,np-edge.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST,play-edge.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST,tv.applemusic.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST,uts-api.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
+完全相同的匹配条件、不同策略,HOST,hls-amt.itunes.apple.com,分流-流媒体解锁,AppleTV,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST-SUFFIX,apple-mapkit.com,分流-海外通用,Developer,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST-SUFFIX,appleswift.com,分流-海外通用,Developer,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
 完全相同的匹配条件、不同策略,HOST-SUFFIX,calendarserver.org,分流-海外通用,Developer,分流-苹果服务,Apple,保留原始顺序；不自动改变策略
